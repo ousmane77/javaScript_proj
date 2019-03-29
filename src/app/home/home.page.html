@@ -1,0 +1,41 @@
+
+<ion-header>
+  <ion-toolbar color='danger'>
+    <ion-title>Appli Shopping</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list  *ngFor='let p of resto' margin-bottom>
+      <ion-item (click)="go(p.id)">
+        <ion-thumbnail item-start>
+          <img src='{{p.image1}}'>
+        </ion-thumbnail>
+        <h3 padding>{{ p.title }}</h3>
+        <p>{{ p.price | currency }}</p> 
+        <ion-grid>
+          <ion-row>
+              <ion-col><span>
+                  <span *ngIf="p.averageStar >=1">
+                    <ion-icon color='warning' name="star"></ion-icon>
+                  </span>
+                  <span *ngIf="p.averageStar >=2">
+                    <ion-icon color='warning' name="star"></ion-icon>
+                  </span>
+                  <span *ngIf="p.averageStar >=3">
+                    <ion-icon color='warning' name="star"></ion-icon>
+                  </span>
+                  <span *ngIf="p.averageStar >=4">
+                    <ion-icon color='warning' name="star"></ion-icon>
+                  </span>
+                  <span *ngIf="p.averageStar >=5">
+                    <ion-icon color='warning' name="star"></ion-icon>
+                  </span>
+              </span>
+                </ion-col>
+          </ion-row>
+        </ion-grid>
+        
+      </ion-item>
+    </ion-list>
+</ion-content>

@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar color='danger'>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='../home'></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{r.title}}</ion-title>
+    <ion-buttons slot='end'>
+        <button ion-button><ion-icon name='share'></ion-icon></button>
+        <button (click)='openCart()' ion-button><ion-icon name='cart'></ion-icon></button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen *ngFor='let r of resto'>
+  
+   <ion-card>
+     <ion-slides pager autoplay='1500' loop="true">
+       <ion-slide>
+         <img src='{{r.image1}}'>
+       </ion-slide>
+        <ion-slide>
+         <img src='{{r.image2}}'>
+       </ion-slide>
+     </ion-slides>
+     
+     <ion-card-content>
+       <ion-card-title>
+          <ion-chip color='primary'>
+           <ion-label>
+             {{r.category}}
+           </ion-label>
+          </ion-chip>
+          <ion-chip *ngIf="r.availability" color='secondary'>
+            <ion-label>
+              Disponible
+            </ion-label>
+          </ion-chip>
+          <ion-chip *ngIf="!r.availability" color='danger'>
+            <ion-label>
+              Non disponible
+            </ion-label>
+          </ion-chip>
+          <ion-chip>
+                <ion-label>
+                  {{r.type}}
+                </ion-label>
+          </ion-chip>
+          <ion-chip color='warning'>
+              <ion-label>
+                {{r.city}}
+              </ion-label>        
+        </ion-chip>
+       </ion-card-title>
+       <p>Prix: {{ r.price | currency }}</p>
+       <p>Rating:
+          <span *ngIf="r.averageStar >=1">
+              <ion-icon color='warning' name="star"></ion-icon>
+            </span>
+            <span *ngIf="r.averageStar >=2">
+              <ion-icon color='warning' name="star"></ion-icon>
+            </span>
+            <span *ngIf="r.averageStar >=3">
+              <ion-icon color='warning' name="star"></ion-icon>
+            </span>
+            <span *ngIf="r.averageStar >=4">
+              <ion-icon color='warning' name="star"></ion-icon>
+            </span>
+            <span *ngIf="r.averageStar >=5">
+              <ion-icon color='warning' name="star"></ion-icon>
+            </span>
+       </p>
+       </ion-card-content>
+   </ion-card>
+</ion-content>
+<ion-footer text-center>
+        <ion-button (click)='addToCart(resto)' round large>
+          <ion-icon name='cart'></ion-icon>&nbsp;
+          Ajouter au panier
+        </ion-button>
+</ion-footer>

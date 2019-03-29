@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mon Panier</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <ion-list  *ngFor='let p of cart; let i= index' margin-bottom>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img [src]="p.item.pictures[0]">
+      </ion-thumbnail>
+      <h3>
+        <ion-badge color='secondary'>{{ p.qte }}</ion-badge> x {{ p.item.price }}</h3>
+      <ion-grid>
+        <ion-row>
+            <ion-col col-12 *ngIf='p.item.feed'>Livraison:{{p.item.feed}}
+           </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-button>
+                <ion-icon name='mail'></ion-icon>&nbsp; Contactez
+              </ion-button>
+              <ion-button (click)='remove(p, i)' item-right clear color='danger'>
+                  <ion-icon   icon-only name='remove-circle'></ion-icon>
+              </ion-button>  
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            Total: {{(p.qte*p.item.price)+p.item.feed | currency}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+ 
+</ion-content>
+<ion-footer text-center>
+   <ion-button color='danger'  block (click)='closeModal()'>Fermer</ion-button>
+   <ion-button block outline>Panier: {{ total | currency}}</ion-button>
+</ion-footer>
